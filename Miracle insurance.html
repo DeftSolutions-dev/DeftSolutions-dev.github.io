@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miracle Insurance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #2980b9;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --transition: all 0.3s ease;
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: var(--font-family);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--primary);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            animation: slideDown 0.5s ease forwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                top: -100px;
+            }
+
+            to {
+                top: 0;
+            }
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: var(--light);
+            transition: width 0.3s;
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            height: 3px;
+            width: 25px;
+            background: #fff;
+            margin-bottom: 4px;
+            border-radius: 5px;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.6), rgba(44, 62, 80, 0.6)),
+                url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            padding-top: 60px;
+            animation: fadeInBackground 2s ease forwards;
+        }
+
+        @keyframes fadeInBackground {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            animation: fadeIn 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            animation: slideInLeft 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            animation: slideInRight 1s ease;
+        }
+
+        .btn {
+            padding: 0.8rem 2.5rem;
+            background: var(--secondary);
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            font-weight: 600;
+            animation: popIn 1.2s ease;
+        }
+
+        .btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .services,
+        .contact {
+            padding: 5rem 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+            animation: fadeInDown 1s ease;
+        }
+
+        .section-title p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1rem;
+            color: var(--dark);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            padding: 2rem;
+            border-radius: 10px;
+            background: #fff;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeUp 0.5s forwards;
+        }
+
+        .service-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .service-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .service-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .service-card:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        .service-card:nth-child(5) {
+            animation-delay: 1s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-card h3 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .service-card p {
+            flex-grow: 1;
+            font-size: 0.95rem;
+            color: var(--dark);
+            font-weight: 400;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            animation: fadeInUp 1s ease;
+            position: relative;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: var(--font-family);
+            font-size: 1rem;
+            transition: border-color var(--transition);
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        footer {
+            background: var(--dark);
+            color: #fff;
+            padding: 2rem 0;
+            text-align: center;
+            font-weight: 400;
+            animation: fadeIn 1s ease;
+        }
+
+        footer a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-message {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 62, 80, 0.95);
+            color: #fff;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            text-align: center;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+
+        .success-message.active {
+            display: flex;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .success-message h3 {
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .success-message p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .close-btn {
+            padding: 0.5rem 1.5rem;
+            background: var(--secondary);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .close-btn:hover {
+            background: var(--primary);
+        }
+
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .service-card h3 {
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 60px;
+                right: -100%;
+                height: 100vh;
+                width: 200px;
+                background: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.3s ease;
+            }
+
+            .nav-links a {
+                margin: 1.5rem 0;
+                font-size: 1.2rem;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 0.6rem 1.8rem;
+                font-size: 0.9rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav class="container nav">
+            <div class="logo">Miracle Insurance</div>
+            <div class="menu-toggle" id="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#services">Products</a>
+                <a href="#quote">Get Quote</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </nav>
+    </header>
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Protecting What Matters Most</h1>
+            <p>Your trusted partner in comprehensive insurance solutions, offering personalized coverage to safeguard your
+                future and peace of mind.</p>
+            <a href="#quote" class="btn">Get a Quote</a>
+        </div>
+    </section>
+    <section id="about" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Us</h2>
+                <p>At Miracle Insurance, we are committed to delivering exceptional insurance services tailored to your unique
+                    needs. Our team of experienced professionals works diligently to provide comprehensive coverage options
+                    that ensure your personal and business assets are protected against unforeseen events. We believe in building
+                    lasting relationships with our clients by offering transparent, reliable, and innovative insurance solutions.
+                    Our mission is to empower you with the right information and coverage to secure your future with confidence.</p>
+            </div>
+        </div>
+    </section>
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Products</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>General Liability Insurance</h3>
+                    <p>Protect your business from unforeseen events with our comprehensive General Liability Insurance. We cover a
+                        wide range of risks, including bodily injury, property damage, and personal injury, ensuring your business
+                        operations remain smooth and secure. Whether you're a small startup or an established enterprise, our
+                        policies are designed to provide robust coverage tailored to your specific industry needs.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Cargo Liability Insurance</h3>
+                    <p>Ensure the safety of your goods in transit with our reliable Cargo Liability Insurance. Whether by land, sea, or
+                        air, we provide comprehensive coverage against loss or damage, giving you peace of mind throughout the shipping
+                        process. Our policies are flexible and can be customized to meet the unique requirements of your logistics
+                        operations, ensuring timely and efficient delivery of your products.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Property Insurance</h3>
+                    <p>Safeguard your valuable assets with our comprehensive Property Insurance. From your home and vehicles to
+                        commercial properties, we offer tailored coverage options to protect against a variety of risks, including
+                        fire, theft, and natural disasters. Our property insurance solutions are designed to provide maximum protection
+                        with minimal hassle, allowing you to recover quickly and efficiently in the event of unexpected damage or loss.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="quote" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Request a Quote</h2>
+            </div>
+            <form class="contact-form" id="quote-form" method="POST">
+                <div class="form-group">
+                    <input type="text" name="name" id="name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="_replyto" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" id="phone" placeholder="+1 (___) ___-____" required maxlength="17" value="+1 ">
+                </div>
+                <div class="form-group">
+                    <select name="insurance_type" required>
+                        <option value="">Select Insurance Type</option>
+                        <option value="general">General Liability Insurance</option>
+                        <option value="cargo">Cargo Liability Insurance</option>
+                        <option value="property">Property Insurance</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea name="additional_info" placeholder="Additional Information"></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Request</button>
+                <div class="success-message" id="success-message">
+                    <div>
+                        <h3>Thank you!</h3>
+                        <p>Your application has been successfully submitted. We will contact you shortly.</p>
+                        <button type="button" class="close-btn" id="close-button">Close</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>We're here to help you with all your insurance needs. Reach out to us through any of the following methods, and our dedicated team will assist you promptly.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Office Location</h3>
+                    <p>1 Rockefeller Plaza STE 1<br>New York, NY 10020</p>
+                </div>
+                <div class="service-card">
+                    <h3>Phone</h3>
+                    <p>(917) 818-4343</p>
+                </div>
+                <div class="service-card">
+                    <h3>Email</h3>
+                    <p>getcoi@mginsurance.online</p>
+                </div>
+                <div class="service-card">
+                    <h3>Business Hours</h3>
+                    <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: Closed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Miracle Insurance. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        const form = document.getElementById('quote-form');
+        const successMessage = document.getElementById('success-message');
+        const closeButton = document.getElementById('close-button');
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const data = {};
+
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+
+            fetch('https://formspree.io/f/xpwzgrjg', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => {
+                    if (response.ok) {
+                        form.reset();
+                        successMessage.classList.add('active');
+                        document.getElementById('phone').value = '+1 ';
+                    } else {
+                        return response.json().then(data => {
+                            if (Object.hasOwn(data, 'errors')) {
+                                throw new Error(data["errors"].map(error => error["message"]).join(", "));
+                            } else {
+                                throw new Error("Failed to submit the form.");
+                            }
+                        });
+                    }
+                })
+                .catch(error => {
+                    alert(error.message || "Something went wrong.");
+                });
+        });
+
+        closeButton.addEventListener('click', () => {
+            successMessage.classList.remove('active');
+        });
+
+        const nameInput = document.getElementById('name');
+        nameInput.addEventListener('input', () => {
+            const regex = /[^a-zA-Zа-яА-ЯёЁ\s]/g;
+            if (regex.test(nameInput.value)) {
+                nameInput.value = nameInput.value.replace(regex, '');
+            }
+        });
+
+        const phoneInput = document.getElementById('phone');
+        phoneInput.addEventListener('input', formatPhoneNumber);
+        phoneInput.addEventListener('keydown', restrictInput);
+
+        function formatPhoneNumber() {
+            let input = phoneInput.value.replace(/\D/g, '').substring(1);
+            let formatted = '+1 ';
+
+            if (input.length > 0) {
+                formatted += '(';
+            }
+            if (input.length >= 1) {
+                formatted += input.substring(0, 3);
+            }
+            if (input.length >= 4) {
+                formatted += ') ';
+                formatted += input.substring(3, 6);
+            }
+            if (input.length >= 7) {
+                formatted += '-';
+                formatted += input.substring(6, 10);
+            }
+
+            phoneInput.value = formatted;
+        }
+
+        function restrictInput(e) {
+            const input = phoneInput.value.replace(/\D/g, '');
+            if (input.length >= 11 && e.key !== 'Backspace' && e.key !== 'Delete') {
+                e.preventDefault();
+            }
+        }
+    </script>
+</body>
+
+</html>
